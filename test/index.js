@@ -108,8 +108,9 @@ describe('redux-mock-store', () => {
     const store = mockStore()
     const action = { type: 'ADD_ITEM' }
 
-    store.subscribe(() => {
+    store.subscribe((a) => {
       expect(store.getActions()[0]).toEqual(action)
+      expect(action).toEqual(a)
       done()
     })
     store.dispatch(action)

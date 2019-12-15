@@ -38,7 +38,7 @@ export function configureStore (middlewares = []) {
           actions.push(action)
 
           for (let i = 0; i < listeners.length; i++) {
-            listeners[i]()
+            listeners[i](action)
           }
 
           return action
