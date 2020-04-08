@@ -50,9 +50,7 @@
     "sinon": "^1.17.2",
     "standard": "^7.1.2"
   },
-  "dependencies": {
-    "lodash.isplainobject": "^4.0.6"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "redux": "*"
   }

@@ -1,7 +1,13 @@
 import { applyMiddleware } from 'redux'
-import isPlainObject from 'lodash.isplainobject'
 
 const isFunction = arg => typeof arg === 'function'
+
+const isPlainObject = function(obj) {
+  return (
+    Object.prototype.toString.call(obj) === '[object Object]' &&
+    Object.getPrototypeOf(obj) === Object.prototype
+  );
+};
 
 export function configureStore (middlewares = []) {
   return function mockStore (getState = {}) {
@@ -22,16 +28,16 @@ export function configureStore (middlewares = []) {
           if (!isPlainObject(action)) {
             throw new Error(
               'Actions must be plain objects. ' +
-              'Use custom middleware for async actions.'
+                'Use custom middleware for async actions.'
             )
           }
 
           if (typeof action.type === 'undefined') {
             throw new Error(
               'Actions may not have an undefined "type" property. ' +
-              'Have you misspelled a constant? ' +
-              'Action: ' +
-              JSON.stringify(action)
+                'Have you misspelled a constant? ' +
+                'Action: ' +
+                JSON.stringify(action)
             )
           }
 
@@ -73,9 +79,9 @@ export function configureStore (middlewares = []) {
       return self
     }
 
-    const mockStoreWithMiddleware = applyMiddleware(
-      ...middlewares
-    )(mockStoreWithoutMiddleware)
+    const mockStoreWithMiddleware = applyMiddleware(...middlewares)(
+      mockStoreWithoutMiddleware
+    )
 
     return mockStoreWithMiddleware()
   }
